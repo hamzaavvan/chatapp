@@ -6,7 +6,7 @@ let unames = [];
 let active_users = {};
 
 let io = socket.listen(app);
-app.listen(8080);
+app.listen(5000);
 
 
 function handler (req, res) {
