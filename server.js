@@ -6,7 +6,10 @@ let unames = [];
 let active_users = {};
 
 let io = socket.listen(app);
-app.listen(5000);
+app.listen(process.env.PORT || 5000, function () {
+  var port = server.address().port;
+  console.log("Express is working on port " + port);
+});
 
 
 function handler (req, res) {
