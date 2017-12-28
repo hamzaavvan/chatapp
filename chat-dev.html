@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+<style>
+    body {
+        overflow: auto;
+        font-family: 'Didact Gothic', sans-serif;
+    }
+
+    .single {
+        margin-top: 30vh;
+    }
+
+    #modal1, #modal2 {
+        display: block;
+        margin-top: 30px;
+    }
+
+    #modal2 {
+        height: 510px;
+    }
+
+    .wrapper .modal {
+        position: static;
+        width: 100%;
+    }
+
+    .chip {
+        margin-bottom: 18px !important;
+    }
+
+    .icon {
+        background-image: url('l.jpg');
+    }
+
+    #chat-room {
+        
+    }
+
+    form .row {
+        margin-bottom: 0px !important;
+    }
+    
+    .row {
+        margin-bottom: 0 !important;
+    }
+
+    #textarea1 {
+        margin-bottom: 0px;
+        padding: 0;
+    }
+
+    .send {
+        float: right; 
+    }
+
+    #chat-box {
+        height: 300px; /* 375px */
+        /* padding: 10px 25px; */
+        overflow-y: auto;
+        /* margin-right: 25px; */
+        display: table;
+    }
+
+    .pasha {
+        margin-top: 0;
+    }
+
+    .welcome-image {
+        margin-top: 20px;
+    }
+
+    #messages {
+        /* position: absolute;
+        bottom: 128px; */
+        width: 828px;
+        overflow: auto;
+        max-height: 405px;
+        height: inherit;
+        line-height: 1.8;
+        padding: 0 24px;
+        margin-bottom: 25px;
+    }
+
+    .msg {
+        padding-bottom: 0px;
+    }
+
+    .title {
+        font-weight: 900;
+    }
+
+    .text {
+        word-wrap: break-word;
+    }
+</style>
+</head>
+
+<body>
+    <div class="row wrapper"> 
+        <div class="col s12 m4">
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Online Users</h4>
+                    <div class="online">
+                        <div class="chip">
+                            Alex
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col s12 m8">
+            <div id="modal2" class="modal">
+                
+                <div id="chat-room">
+                    <div class="modal-content">
+                        <h6>Chat <span id="username-badge"></span></h6>
+                        <hr>
+                    </div>
+                            
+                    <div id="chat-box">
+                            
+                        <div id="messages">
+                            
+                                <div class="welcome-image center">
+                                        <img height="105px" src="https://scontent.fkhi8-1.fna.fbcdn.net/v/t39.1997-6/s118x90/851584_210852335739468_1341013873_n.png?oh=2b04e0c326196d0eaeba1822a757fdb7&oe=5AA2910B" alt="Welcome">
+                                        <h5>Welcome, <span id="username-welcome"></span> !</h5>
+                                    </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <form class="col s12 send-form">
+                            <div class="row">
+                            <div class="input-field col s12 pasha">
+                                <button class="btn-floating btn-large waves-effect waves-light red send" type="submit"><i class="material-icons">send</i></button>                                
+                                <textarea id="textarea1" autofocus class="materialize-textarea col s11"></textarea>
+                                <label for="textarea1">Message</label>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    
+    </html>
