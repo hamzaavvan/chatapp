@@ -66,11 +66,6 @@
                 float: right; 
             }
 
-            #chat-box {
-                height: 300px;
-                overflow: auto;
-            }
-
             .pasha {
                 margin-top: 0;
             }
@@ -80,10 +75,7 @@
             }
 
             #messages {
-                overflow: auto;
                 width: 100%;
-                max-height: 405px;
-                height: inherit;
                 padding: 0 24px;
                 margin-bottom: 25px;
             }
@@ -118,66 +110,69 @@
                 </div>
             </form>
         </div>
-    </body>
     
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script>
 
-        function userName(user) {
-            return `<div class="chip">${user}</div>`;
-        } 
+            function userName(user) {
+                return `<div class="chip">${user}</div>`;
+            } 
 
-        let socket = io.connect();
-        $(".single").submit(function(e) {
-            e.preventDefault();
+            let socket = io.connect();
+            $(".single").submit(function(e) {
+                e.preventDefault();
 
-            socket.emit('set_name', $(".uname").val());
-        });
-
-        socket.on("name_set", function(data) {
-            $("#login").html(data);
-        });
-
-        socket.on("online", function(data) {
-            users = data[0].split(" ");
-            users.shift();
-
-            $(".online").html("");
-            users.forEach(u => {
-                $(".online").append(userName(u));
+                socket.emit('set_name', $(".uname").val());
             });
-            
-            $("#username-welcome").html(data[1]);
-            
-            if (!$(".set-uname")[0])
-                $("#username-badge").html(`<span class="new badge blue set-uname" data-badge-caption="">${data[1]}</span>`)
-        })
 
-        $("#login").on("submit", ".send-form", (e) => {
-            e.preventDefault();
+            socket.on("name_set", function(data) {
+                $("#login").html(data);
+            });
 
-            socket.emit("message", $("#textarea1").val());
-            $("#textarea1").val("")
-        });
+            socket.on("online", function(data) {
+                users = data[0].split(" ");
+                users.shift();
 
-        socket.on("message_recive", (msg, sent_by) => {
-            let message = $(`<ul class="collection"><li class="collection-item avatar">
-                            <img src="https://api.adorable.io/avatars/75/${sent_by}" alt="" class="circle">
-                            <span class="title">${sent_by}</span>
-                            <p class="text">${msg}</p></li></ul>`);
-            
-            // $(".welcome-image").hide();
-            $("#chat-box").css({height: "365px"});
-            $("#messages").append(message);
-        });
+                $(".online").html("");
+                users.forEach(u => {
+                    $(".online").append(userName(u));
+                });
+                
+                
+                if (!$(".set-uname")[0]) {
+                    $("#username-welcome").html(data[1]);
+                    $("#username-badge").html(`<span class="new badge blue set-uname" data-badge-caption="">${data[1]}</span>`)
+                }
+            })
 
-        socket.on("name_already_set", (msg) => {
-            console.log(msg)
-            $("#uname").addClass("invalid");
-            $("label[for='uname']").attr("data-error", msg);
-        })
+            $("#login").on("submit", ".send-form", (e) => {
+                e.preventDefault();
 
-    </script>
+                socket.emit("message", $("#textarea1").val());
+                $("#textarea1").val("")
+            });
+
+            socket.on("message_recive", (msg, sent_by) => {
+                let message = $(`<ul class="collection"><li class="collection-item avatar">
+                                <img src="https://api.adorable.io/avatars/75/${sent_by}" alt="" class="circle">
+                                <span class="title">${sent_by}</span>
+                                <p class="text">${msg}</p></li></ul>`);
+                
+                // $(".welcome-image").hide();
+                // $("#chat-box").css({height: "365px"});
+                $("#messages").append(message);
+                
+                var messages = $("#messages");
+                $("#chat-box").scrollTop(messages.height());
+            });
+
+            socket.on("name_already_set", (msg) => {
+                $("#uname").addClass("invalid");
+                $("label[for='uname']").attr("data-error", msg);
+            })
+
+        </script>
+    </body>
 </html>
