@@ -57,8 +57,13 @@ io.on('connection', function (socket) {
       socket.on("message", msg => {
         console.log(msg);
         let sent_by = active_users[socket.id];
-        io.sockets.emit("message_recive", msg, sent_by);
-      });
+
+        if (msg.length > 0) {
+          io.sockets.emit("message_recive", msg, sent_by);
+        } else {
+          io.sockets.emit("message_empty_error", "Message should not be empty");
+        }
+    });
 
   });
 });
