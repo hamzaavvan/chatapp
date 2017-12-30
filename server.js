@@ -2,6 +2,8 @@ var app = require('http').createServer(handler)
 var socket = require('socket.io');
 var fs = require('fs');
 var dateFormat = require('dateformat');
+const Entities = require('html-entities').XmlEntities;
+const entities = new Entities();
 
 var now = new Date();
 
@@ -58,10 +60,9 @@ io.on('connection', function (socket) {
       }
 
       socket.on("message", msg => {
-        console.log(msg);
         let sent_by = active_users[socket.id];
         let date = dateFormat(now, "yyyy, mmm d");
-        msg = msg.replace(/\n/g, "<br />");
+        msg = entities.encode(msg).replace(/\n/g, "<br />");
 
         if (msg.length > 0) {
           io.sockets.emit("message_recive", msg, sent_by, date);
