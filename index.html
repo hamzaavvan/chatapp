@@ -92,6 +92,10 @@
             .text {
                 word-wrap: break-word;
             }
+
+            .datetime {
+                color: #675f5f;
+            }
         </style>
     </head>
 
@@ -161,11 +165,13 @@
                 $("#textarea1").val("")
             });
 
-            socket.on("message_recive", (msg, sent_by) => {
+            socket.on("message_recive", (msg, sent_by, date) => {
                 let message = $(`<ul class="collection"><li class="collection-item avatar">
                                 <img src="https://api.adorable.io/avatars/75/${sent_by}" alt="" class="circle">
                                 <span class="title">${sent_by}</span>
-                                <p class="text">${msg}</p></li></ul>`);
+                                <p class="text">${msg}</p>
+                                <small class="datetime">${date}</small>
+                                </li></ul>`);
                 
                 // $(".welcome-image").hide();
                 // $("#chat-box").css({height: "365px"});

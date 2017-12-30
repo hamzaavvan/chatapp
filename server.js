@@ -1,6 +1,9 @@
 var app = require('http').createServer(handler)
 var socket = require('socket.io');
 var fs = require('fs');
+var dateFormat = require('dateformat');
+
+var now = new Date();
 
 let unames = [];
 let active_users = {};
@@ -57,9 +60,11 @@ io.on('connection', function (socket) {
       socket.on("message", msg => {
         console.log(msg);
         let sent_by = active_users[socket.id];
+        let date = dateFormat(now, "yyyy, mmm d");
+        msg = msg.replace(/\n/g, "<br />");
 
         if (msg.length > 0) {
-          io.sockets.emit("message_recive", msg, sent_by);
+          io.sockets.emit("message_recive", msg, sent_by, date);
         } else {
           io.sockets.emit("message_empty_error", "Message should not be empty");
         }
