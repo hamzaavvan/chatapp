@@ -8,8 +8,7 @@
   "main": "server.js",
   "dependencies": {
     "socket.io": "*",
-    "dateformat" : "3.0.2",
-    "html-entities": "1.2.1"
+    "dateformat" : "3.0.2"
   },
   "devDependencies": {},
   "scripts": {
