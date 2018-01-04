@@ -11,6 +11,10 @@
         height: 300px;
         overflow: auto;
     }
+
+    .color-white {
+        color: white;
+    }
 </style>
 <div class="row wrapper"> 
     <div class="col s12 m4">
@@ -31,7 +35,7 @@
             
             <div id="chat-room">
                 <div class="modal-content">
-                    <h6>Chat <span id="username-badge"></span></h6>
+                    <h6>Chat <span class="new badge logout red color-white" data-badge-caption="">Logout</span> <span id="username-badge"></span></h6>
                     <hr>
                 </div>
                         
@@ -55,7 +59,7 @@
                             </div>
                             <div class="input-field col s2 m1 pasha ">
                                 <button class="btn-floating btn-large hide-on-small-only waves-effect waves-light red send" type="submit"><i class="material-icons">send</i></button>                                
-                                <button class="btn-floating hide-on-large-only waves-effect waves-light red send" type="submit"><i class="material-icons">send</i></button>                                
+                                <button class="btn-floating hide-on-med-and-up waves-effect waves-light red send" type="submit"><i class="material-icons">send</i></button>                                
                             </div>
                         </div>
                     </form>
